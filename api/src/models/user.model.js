@@ -36,7 +36,11 @@ UserSchema.methods.comparePassword = async function (password) {
 UserSchema.methods.generateAuthToken = function () {
   const payload = { id: this._id };
   const options = { expiresIn: config.JWT_EXPIRE };
-  return jwt.sign(payload, config.JWT_EXPIRE, options);
+  return jwt.sign(payload, config.JWT_SECRET, options);
+};
+
+UserSchema.statics.verifyToken = function (token) {
+  return jwt.verify(token, config.JWT_SECRET);
 };
 
 const User = model("User", UserSchema);
