@@ -1,13 +1,9 @@
 import { Schema, model } from "mongoose";
 
 const ChatSchema = new Schema({
-  chatName: {
-    type: String,
-    required: true,
-  },
-  isGroupChat: {
-    type: Boolean,
-    default: false,
+  latestMessage: {
+    type: Schema.Types.ObjectId,
+    ref: "Message",
   },
   users: [
     {
@@ -15,14 +11,6 @@ const ChatSchema = new Schema({
       ref: "User",
     },
   ],
-  latestMessage: {
-    type: Schema.Types.ObjectId,
-    ref: "Message",
-  },
-  groupAdmin: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
 });
 
 const Chat = model("Chat", ChatSchema);

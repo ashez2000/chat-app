@@ -1,21 +1,21 @@
 import { Schema, model } from "mongoose";
 
 const MessageSchema = new Schema({
-  sender: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  text: {
+  content: {
     type: String,
     required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   chat: {
     type: Schema.Types.ObjectId,
     ref: "Chat",
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 
